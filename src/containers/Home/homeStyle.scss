@@ -1,0 +1,112 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  background-color: white;
+  .container {
+    .title {
+      display: flex;
+      padding: 0 12px;
+      justify-content: space-between;
+      align-items: center;
+      height: 40px;
+      border-bottom: 1px solid rgba(171, 171, 171, 0.5);
+
+      .page {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+
+        svg {
+          color: grey;
+
+          &:hover {
+            color: orange;
+          }
+        }
+      }
+    }
+
+    .body {
+      display: flex;
+      gap: 12px;
+      padding: 12px;
+
+      .card {
+        display: flex;
+        width: 530px;
+        height: 233px;
+        box-shadow: 0px 5px 20px -7px rgba(34, 60, 80, 0.2);
+
+        img {
+          width: 233px;
+          height: 233px;
+          object-fit: cover;
+        }
+
+        .cardContainer {
+          display: flex;
+          justify-content: space-between;
+          flex-direction: column;
+          padding: 10px;
+
+          .description {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            line-clamp: 4;
+            -webkit-box-orient: vertical;
+          }
+
+          svg {
+            color: grey;
+          }
+
+          .active {
+            color: orange;
+          }
+
+          h4 {
+            margin: 0;
+          }
+
+          h6 {
+            color: grey;
+            margin: 10px 0;
+          }
+
+          .bottom {
+            display: flex;
+          }
+
+          .chat {
+            font-size: 14px;
+            margin-left: 20px;
+            display: flex;
+            align-items: center;
+
+            &:hover {
+              color: black;
+              svg {
+                color: orange;
+              }
+            }
+          }
+
+          .like {
+            font-size: 14px;
+            display: flex;
+            align-items: flex-end;
+            gap: 4px;
+
+            &:hover {
+              svg {
+                color: orange;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
