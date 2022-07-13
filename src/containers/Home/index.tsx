@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import './homeStyle.scss'
 import {
@@ -11,17 +11,20 @@ import {
 import nature from './images/nature.jpg'
 import { NewsType } from '../../shared/rowNews'
 
-const Home = ({
-  news,
-  setNewsPage,
-}: {
+type HomePropsType = {
   news: NewsType[]
   setNewsPage: React.Dispatch<React.SetStateAction<NewsType>>
-}) => {
+}
+
+const Home: React.FC<HomePropsType> = ({
+  news,
+  setNewsPage,
+}: HomePropsType) => {
   const [currentNews, setCurrentNews] = useState(news.slice(0, 2))
   const [page, setPage] = useState(1)
   const maxPage = Math.floor(news.length / 2)
   const [count, setCount] = useState(currentNews.map((el) => el.likesCount))
+  const cards = useRef<Array<HTMLDivElement | null>>([])
 
   const onClickHandler = (id: number) => {
     const newLikesCount = [...count]
@@ -39,6 +42,13 @@ const Home = ({
     } else {
       setPage(page - 1)
     }
+    cards.current.map((el) => {
+      el?.classList.remove('rightSlider')
+      el?.classList.remove('leftSlider')
+      window.requestAnimationFrame(() => {
+        el?.classList.add('leftSlider')
+      })
+    })
   }
 
   const onClickRightHandler = () => {
@@ -47,6 +57,13 @@ const Home = ({
     } else {
       setPage(page + 1)
     }
+    cards.current.map((el) => {
+      el?.classList.remove('rightSlider')
+      el?.classList.remove('leftSlider')
+      window.requestAnimationFrame(() => {
+        el?.classList.add('rightSlider')
+      })
+    })
   }
 
   useEffect(() => {
@@ -54,6 +71,10 @@ const Home = ({
     setCurrentNews(temp)
     setCount(temp.map((el) => el.likesCount))
   }, [page])
+
+  useEffect(() => {
+    cards.current = cards.current.slice(0, currentNews.length)
+  }, [currentNews])
 
   return (
     <div className="wrapper">
@@ -75,39 +96,47 @@ const Home = ({
           </div>
         </div>
         <div className="body">
-          {currentNews.map((el, index) => (
-            <div className="card" key={index}>
-              <img src={nature} alt="nature" />
-              <div className="cardContainer">
-                <div className="text">
-                  <Link to="/news" onClick={() => setNewsPage(el)}>
-                    <h4>{el.title}</h4>
-                  </Link>
-                  <h6>{el.date}</h6>
-                  <div className="description">{el.description}</div>
-                </div>
-                <div className="bottom">
-                  <button
-                    className="like"
-                    onClick={() => onClickHandler(index)}
-                  >
-                    <LikeIcon
-                      className={el.likesCount === count[index] ? '' : 'active'}
-                    />
-                    {count[index]}
-                  </button>
-                  <Link
-                    to="/news"
-                    onClick={() => setNewsPage(el)}
-                    className="chat"
-                  >
-                    <ChatIcon />
-                    {el.commentsCount}
-                  </Link>
+          {currentNews.map((el, index) => {
+            return (
+              <div
+                ref={(el) => (cards.current[index] = el)}
+                className="card"
+                key={index}
+              >
+                <img src={el.imgUrl} alt="" />
+                <div className="cardContainer">
+                  <div className="text">
+                    <Link to="/news" onClick={() => setNewsPage(el)}>
+                      <h4>{el.title}</h4>
+                    </Link>
+                    <h6>{el.date}</h6>
+                    <div className="description">{el.description}</div>
+                  </div>
+                  <div className="bottom">
+                    <button
+                      className="like"
+                      onClick={() => onClickHandler(index)}
+                    >
+                      <LikeIcon
+                        className={
+                          el.likesCount === count[index] ? '' : 'active'
+                        }
+                      />
+                      {count[index]}
+                    </button>
+                    <Link
+                      to="/news"
+                      onClick={() => setNewsPage(el)}
+                      className="chat"
+                    >
+                      <ChatIcon />
+                      {el.commentsCount}
+                    </Link>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
       </div>
     </div>
