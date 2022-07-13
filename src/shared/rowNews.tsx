@@ -9,9 +9,9 @@ export type NewsType = {
 
 function randomDate() {
   const d = new Date(+new Date() - Math.floor(Math.random() * 10000000000))
-  const ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d)
-  const mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(d)
-  const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d)
+  const ye = new Intl.DateTimeFormat('ru', { year: '2-digit' }).format(d)
+  const mo = new Intl.DateTimeFormat('ru', { month: 'numeric' }).format(d)
+  const da = new Intl.DateTimeFormat('ru', { day: '2-digit' }).format(d)
   return `${da}.${mo}.${ye}`
 }
 

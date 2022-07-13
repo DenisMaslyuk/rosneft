@@ -4,7 +4,9 @@ type IconProps = {
   className?: string
 }
 
-export const ArrowForwardIcon: React.FC<IconProps> = ({ className }) => (
+export const ArrowForwardIcon: React.FC<IconProps> = ({
+  className,
+}: IconProps) => (
   <svg
     className={className}
     height="12"
@@ -16,7 +18,7 @@ export const ArrowForwardIcon: React.FC<IconProps> = ({ className }) => (
   </svg>
 )
 
-export const ChatIcon: React.FC<IconProps> = ({ className }) => (
+export const ChatIcon: React.FC<IconProps> = ({ className }: IconProps) => (
   <svg
     className={className}
     height="16"
@@ -33,7 +35,7 @@ export const ChatIcon: React.FC<IconProps> = ({ className }) => (
   </svg>
 )
 
-export const LikeIcon: React.FC<IconProps> = ({ className }) => (
+export const LikeIcon: React.FC<IconProps> = ({ className }: IconProps) => (
   <svg
     height="16"
     width="16"
@@ -46,28 +48,32 @@ export const LikeIcon: React.FC<IconProps> = ({ className }) => (
   </svg>
 )
 
-export const ArrowButtonLeftIcon: React.FC<IconProps> = ({ className }) => (
+export const ArrowButtonLeftIcon: React.FC<IconProps> = ({
+  className,
+}: IconProps) => (
   <svg
     height="16"
     width="16"
     xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 122.88 113.41"
+    viewBox="0 0 16 16"
     fill="currentColor"
     className={className}
   >
-    <path d="M61.44,0c33.93,0,61.44,27.51,61.44,61.44s-27.51,61.44-61.44,61.44C27.51,122.88,0,95.37,0,61.44 S27.51,0,61.44,0L61.44,0z M77.9,34.82H59.54L40.2,61.44l19.33,26.63H77.9L58.57,61.44L77.9,34.82L77.9,34.82z" />
+    <path d="M 8 0 C 12.417969 0 16 3.582031 16 8 C 16 12.417969 12.417969 16 8 16 C 3.582031 16 0 12.417969 0 8 C 0 3.582031 3.582031 0 8 0 Z M 10.144531 4.535156 L 7.753906 4.535156 L 5.234375 8 L 7.75 11.46875 L 10.144531 11.46875 L 7.625 8 Z M 10.144531 4.535156 " />
   </svg>
 )
 
-export const ArrowButtonRightIcon: React.FC<IconProps> = ({ className }) => (
+export const ArrowButtonRightIcon: React.FC<IconProps> = ({
+  className,
+}: IconProps) => (
   <svg
     height="16"
     width="16"
     xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 122.88 113.41"
+    viewBox="0 0 16 16"
     fill="currentColor"
     className={className}
   >
-    <path d="M61.44,122.88C27.51,122.88,0,95.37,0,61.44C0,27.51,27.51,0,61.44,0s61.44,27.51,61.44,61.44 C122.88,95.37,95.37,122.88,61.44,122.88L61.44,122.88z M44.98,88.07h18.36l19.33-26.63L63.34,34.81H44.98l19.33,26.63L44.98,88.07 L44.98,88.07z" />
+    <path d="M 8 16 C 3.582031 16 0 12.417969 0 8 C 0 3.582031 3.582031 0 8 0 C 12.417969 0 16 3.582031 16 8 C 16 12.417969 12.417969 16 8 16 Z M 5.855469 11.46875 L 8.246094 11.46875 L 10.765625 8 L 8.246094 4.53125 L 5.855469 4.53125 L 8.375 8 Z M 5.855469 11.46875 " />
   </svg>
 )

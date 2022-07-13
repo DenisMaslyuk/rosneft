@@ -8,7 +8,6 @@ import {
   ChatIcon,
   LikeIcon,
 } from '@@webapp/icons'
-import nature from './images/nature.jpg'
 import { NewsType } from '../../shared/rowNews'
 
 type HomePropsType = {
@@ -103,7 +102,7 @@ const Home: React.FC<HomePropsType> = ({
                 className="card"
                 key={index}
               >
-                <img src={el.imgUrl} alt="" />
+                {el.imgUrl && <img src={el.imgUrl} alt="" />}
                 <div className="cardContainer">
                   <div className="text">
                     <Link to="/news" onClick={() => setNewsPage(el)}>
